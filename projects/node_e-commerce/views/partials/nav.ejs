@@ -19,7 +19,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                        <% for(let category of categories) { %>
+                        <% for(let category of cat) { %>
                         <a class="dropdown-item"
                             href="/api/products/getproductsbycategoryid/<%= category._id %>"><%= category.name %></a>
                         <% } %>

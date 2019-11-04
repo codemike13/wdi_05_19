@@ -7,7 +7,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
 
             Product.find(params)
-                .populate('category')
+                .populate('cat')
                 .exec()
                 .then(products => {
                     resolve(products)
@@ -39,7 +39,7 @@ module.exports = {
     getProductsByCategoryID: (id) => {
         return new Promise((resolve, reject) => {
             Product.find({ cat: id })
-                .populate('category')
+                .populate('cat')
                 .exec()
                 .then(products => {
                     resolve(products)
@@ -99,6 +99,29 @@ module.exports = {
                 res.send({ products: products })
             }
         })
-    }
+    },
+    editProduct: (params, id) => {
+        return new Promise((resolve, reject) => {
+            Product.findById(id)
+                .then(product => {
+                    product.name = req.params.name,
+                        product.cat.name = req.params.category,
+                        product.price = req.params.newId
+                    product.save()
+                        .then(product => {
+                            resolve(product)
+                        })
+                        .catch(err => {
+                            reject(err)
+                        })
+                })
+                .catch(err => {
+                    let errors = {}
+                    errors.status = 500
+                    errors.message = err
 
+                    reject(errors)
+                })
+        })
+    }
 }

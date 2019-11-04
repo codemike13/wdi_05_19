@@ -6,7 +6,7 @@ module.exports = {
         for (let i = 0; i < 40; i++) {
             let newProduct = new Product()
 
-            newProduct.category = req.params.categoryID
+            newProduct.cat = req.params.categoryID
             newProduct.name = faker.commerce.productName()
             newProduct.price = faker.commerce.price()
             newProduct.image = faker.image.image()

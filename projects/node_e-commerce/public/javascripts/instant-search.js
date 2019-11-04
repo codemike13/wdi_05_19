@@ -11,7 +11,6 @@
 // });
 
 $("#q2").keyup(() => {
-    $("#productSearchResults").empty()
 
     $.ajax({
         url: "/api/products/instant-search",
@@ -23,6 +22,7 @@ $("#q2").keyup(() => {
 
         success: (result) => {
             console.log(result.products);
+            $("#productSearchResults").empty()
 
             for (item of result.products) {
                 $("#productSearchResults").append(
